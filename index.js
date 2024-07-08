@@ -1,19 +1,13 @@
 import express from "express";
 import fetch from "node-fetch";
+import cors from "cors";
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 const POKE_API_BASE_URL = "https://pokeapi.co/api/v2";
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
+app.use(cors());
 
 app.get("/api/pokemon", async (req, res) => {
   try {
