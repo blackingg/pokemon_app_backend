@@ -15,7 +15,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// Fetch Pokémon list
 app.get("/api/pokemon", async (req, res) => {
   try {
     const response = await fetch(`${POKE_API_BASE_URL}/pokemon/?limit=898`);
@@ -26,7 +25,6 @@ app.get("/api/pokemon", async (req, res) => {
   }
 });
 
-// Fetch Pokémon by ID
 app.get("/api/pokemon/:id", async (req, res) => {
   const { id } = req.params;
   try {
@@ -38,7 +36,6 @@ app.get("/api/pokemon/:id", async (req, res) => {
   }
 });
 
-// Fetch Pokémon species by ID
 app.get("/api/pokemon-species/:id", async (req, res) => {
   const { id } = req.params;
   try {
@@ -52,7 +49,6 @@ app.get("/api/pokemon-species/:id", async (req, res) => {
   }
 });
 
-// Fetch Pokémon evolution chain by ID
 app.get("/api/evolution-chain/:id", async (req, res) => {
   const { id } = req.params;
   try {
