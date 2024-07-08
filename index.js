@@ -7,7 +7,11 @@ const PORT = process.env.PORT || 3001;
 
 const POKE_API_BASE_URL = "https://pokeapi.co/api/v2";
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://pokedex-blackingg.netlify.app/",
+  })
+);
 
 app.get("/api/pokemon", async (req, res) => {
   try {
