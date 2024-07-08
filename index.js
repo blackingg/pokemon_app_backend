@@ -9,7 +9,7 @@ const POKE_API_BASE_URL = "https://pokeapi.co/api/v2";
 
 app.use(
   cors({
-    origin: "https://pokedex-blackingg.netlify.app/",
+    origin: "https://pokedex-blackingg.netlify.app",
   })
 );
 
