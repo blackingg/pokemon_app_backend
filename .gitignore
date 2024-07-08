@@ -17,3 +17,4 @@ Thumbs.db
 
 # Ignore npm debug log
 npm-debug.log*
+.vercel
