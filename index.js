@@ -60,6 +60,31 @@ app.get("/api/evolution-chain/:id", async (req, res) => {
   }
 });
 
+app.get("/api/type/:typeName", async (req, res) => {
+  const { typeName } = req.params;
+  try {
+    // Fetch the list of all types
+    const response = await fetch(`${POKE_API_BASE_URL}/type/${typeName}`);
+    const types = await response.json();
+
+    // Find the URL for the selected type
+    const type = types.results.find((t) => t.name === typeName);
+    if (!type) {
+      return res.status(404).json({ error: `Type '${typeName}' not found` });
+    }
+
+    // Fetch data for the selected type
+    const typeDataResponse = await fetch(type.url);
+    const typeData = await typeDataResponse.json();
+    res.json(typeData);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: `Failed to fetch type data for '${typeName}'` });
+  }
+});
+
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
