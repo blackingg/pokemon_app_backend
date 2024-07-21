@@ -60,17 +60,19 @@ app.get("/api/evolution-chain/:id", async (req, res) => {
   }
 });
 
-app.get("/api/type/:typeName", async (req, res) => {
-  const { typeName } = req.params;
+app.get("/api/type/:selectedType", async (req, res) => {
+  const { selectedType } = req.params;
   try {
     // Fetch the list of all types
-    const response = await fetch(`${POKE_API_BASE_URL}/type/${typeName}`);
+    const response = await fetch(`${POKE_API_BASE_URL}/type/${selectedType}`);
     const types = await response.json();
 
     // Find the URL for the selected type
-    const type = types.results.find((t) => t.name === typeName);
+    const type = types.results.find((t) => t.name === selectedType);
     if (!type) {
-      return res.status(404).json({ error: `Type '${typeName}' not found` });
+      return res
+        .status(404)
+        .json({ error: `Type '${selectedType}' not found` });
     }
 
     // Fetch data for the selected type
@@ -80,7 +82,7 @@ app.get("/api/type/:typeName", async (req, res) => {
   } catch (error) {
     res
       .status(500)
-      .json({ error: `Failed to fetch type data for '${typeName}'` });
+      .json({ error: `Failed to fetch type data for '${selectedType}'` });
   }
 });
 
