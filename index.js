@@ -65,19 +65,8 @@ app.get("/api/type/:selectedType", async (req, res) => {
   try {
     // Fetch the list of all types
     const response = await fetch(`${POKE_API_BASE_URL}/type/${selectedType}`);
-    const types = await response.json();
-
-    // Find the URL for the selected type
-    const type = types.results.find((t) => t.name === selectedType);
-    if (!type) {
-      return res
-        .status(404)
-        .json({ error: `Type '${selectedType}' not found` });
-    }
-
-    // Fetch data for the selected type
-    const typeDataResponse = await fetch(type.url);
-    const typeData = await typeDataResponse.json();
+  
+    const typeData = await await response.json();
     res.json(typeData);
   } catch (error) {
     res
