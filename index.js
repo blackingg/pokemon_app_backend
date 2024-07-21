@@ -63,10 +63,8 @@ app.get("/api/evolution-chain/:id", async (req, res) => {
 app.get("/api/type/:selectedType", async (req, res) => {
   const { selectedType } = req.params;
   try {
-    // Fetch the list of all types
     const response = await fetch(`${POKE_API_BASE_URL}/type/${selectedType}`);
-  
-    const typeData = await await response.json();
+    const typeData = await response.json();
     res.json(typeData);
   } catch (error) {
     res
